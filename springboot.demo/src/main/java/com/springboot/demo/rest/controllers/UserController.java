@@ -1,12 +1,14 @@
 package com.springboot.demo.rest.controllers;
 
 import com.springboot.demo.models.User;
-import com.springboot.demo.repositories.IRepository;
 import com.springboot.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 public class UserController {
@@ -25,9 +27,22 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<?> createUser(@RequestBody User user){
-        userService.save(user);
-        return null;
-        //return ResponseEntity.created("/user/" + user.getId());
+    public ResponseEntity<?> createUser(
+            @Valid // ensures the input is validated
+            @RequestBody
+                    User user){
+        User savedUser = userService.save(user);
+        URI uri =  ServletUriComponentsBuilder.
+                fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+        return ResponseEntity.created(uri).build();
+    }
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable String id){
+        userService.delete(id);
+        return ResponseEntity.ok().build();
     }
 }

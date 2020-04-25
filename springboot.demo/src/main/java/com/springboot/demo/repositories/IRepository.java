@@ -3,7 +3,6 @@ package com.springboot.demo.repositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.List;
 
 @Repository
 public interface IRepository<T> {
@@ -12,6 +11,8 @@ public interface IRepository<T> {
 
     T getById(String id);
 
-    void save(T t);
+    T save(T t);
+
+    void delete(String id);
 
 }

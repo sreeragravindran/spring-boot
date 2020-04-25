@@ -12,9 +12,9 @@ public class UserRepository implements IRepository<User> {
     private HashMap<Integer, User> users = new HashMap();
 
     public UserRepository() {
-        users.put(1, new User(1, "mark", new Date()));
-        users.put(2, new User(2, "bob", new Date()));
-        users.put(3, new User(3, "alice", new Date()));
+        users.put(1, new User(1, "mark", 21, new Date()));
+        users.put(2, new User(2, "bob", 31, new Date()));
+        users.put(3, new User(3, "alice",41, new Date()));
     }
 
     @Override
@@ -28,7 +28,13 @@ public class UserRepository implements IRepository<User> {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         users.put(user.getId(), user);
+        return user;
+    }
+
+    @Override
+    public void delete(String id){
+        users.remove(Integer.parseInt(id));
     }
 }
