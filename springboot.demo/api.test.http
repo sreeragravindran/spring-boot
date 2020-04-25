@@ -1,0 +1,17 @@
+@host=http://localhost:8080
+
+### 
+GET {{host}}/users HTTP/1/1
+
+### 
+GET {{host}}/user/2 
+
+### 
+POST {{host}}/user 
+Content-Type: application/json
+
+{
+  "name": "bobby",
+  "dateOfBirth": "2020-04-25T07:39:01.058+0000",
+  "id": 4
+}

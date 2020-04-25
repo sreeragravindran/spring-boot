@@ -1,4 +1,4 @@
-package com.rest.services.springboot.demo;
+package com.springboot.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
