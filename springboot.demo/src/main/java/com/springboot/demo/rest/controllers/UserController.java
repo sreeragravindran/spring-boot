@@ -3,12 +3,15 @@ package com.springboot.demo.rest.controllers;
 import com.springboot.demo.models.User;
 import com.springboot.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 public class UserController {
@@ -23,7 +26,14 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity<?> user(@PathVariable String id) {
-        return ResponseEntity.ok(userService.get(id));
+
+        User user = userService.get(id);
+
+        // HATEOAS implementation ( Hypermedia as the Engine of Application State )
+        EntityModel<User> userModel = new EntityModel<>(user);
+        userModel.add(linkTo(methodOn(this.getClass()).users()).withRel("all-users"));
+
+        return ResponseEntity.ok(userModel);
     }
 
     @PostMapping("/user")
