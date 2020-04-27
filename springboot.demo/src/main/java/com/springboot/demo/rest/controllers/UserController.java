@@ -16,6 +16,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RestController
 public class UserController {
 
+
     @Autowired
     UserService userService;
 
@@ -42,11 +43,14 @@ public class UserController {
             @RequestBody
                     User user){
         User savedUser = userService.save(user);
+
+        // form the uri to accesss the resource created
         URI uri =  ServletUriComponentsBuilder.
                 fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedUser.getId())
                 .toUri();
+
         return ResponseEntity.created(uri).build();
     }
 
