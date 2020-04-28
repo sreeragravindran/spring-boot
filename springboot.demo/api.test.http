@@ -13,9 +13,21 @@ Content-Type: application/json
 {
   "name": "bobby",
   "dateOfBirth": "2020-04-25T07:39:01.058+0000",
-  "age": 10
+  "age": 10,
   "id": 4
 }
 ###
 
 DELETE {{host}}/user/4
+
+### 
+
+GET {{host}}/internationalize/greetings/
+Accept-Language: mal
+
+
+### 
+GET  {{host}}/actuator/metrics/process.cpu.usage
+
+### dynamic filtering 
+GET {{host}}/dynamicfilter?fields=field1,field2

@@ -24,4 +24,14 @@ public class BeanInitializer {
 //        messageSource.setBasename("messages");
 //        return messageSource;
 //    }
+
+//    @Bean
+//    public SecurityWen securityWebFilterChain(
+//            ServerHttpSecurity http) {
+//        return http.authorizeExchange()
+//                .pathMatchers("/actuator/**").permitAll()
+//                .anyExchange().authenticated()
+//                .and().build();
+//    }
+
 }

@@ -19,6 +19,9 @@ configurations {
 }
 
 repositories {
+//	jcenter{
+//		url "http://oss.jfrog.org/artifactory/oss-snapshot-local/"
+//	}
 	mavenCentral()
 }
 
@@ -26,6 +29,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+	compile 'org.springframework.boot:spring-boot-starter-actuator'
+	compile 'org.springframework.data:spring-data-rest-hal-browser'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: "3.5"
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'

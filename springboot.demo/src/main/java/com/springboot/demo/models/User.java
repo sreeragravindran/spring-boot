@@ -27,8 +27,7 @@ public class User {
     @Past
     private Date dateOfBirth;
 
-
-    //TODO: how can we apply validtions conditionally?
+    //TODO: how can we apply validations dynamically?
     @AssertFalse(message = "the person should be above 18") // this is useful to assert complex conditions on the object
     @JsonIgnore
     public boolean isMinor(){
